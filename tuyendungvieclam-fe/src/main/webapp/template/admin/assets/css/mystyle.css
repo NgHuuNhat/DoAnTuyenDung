@@ -1,0 +1,148 @@
+.h6{
+	width: 500px;
+}
+
+.idbooktour {
+	width: 200px !important;
+}
+
+
+div.nhatnhat {
+	display: flex !important;
+}
+
+div.nhat {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    background-color: #f3fafc;
+    width: 200;
+    height: 100px;
+    padding: 30px;
+    padding-top: 60px;
+    border: 1px solid;
+    margin: 20px;
+}
+
+label.error {
+	color: red;
+}
+
+.form-file {
+	opacity: 1 !important;
+	margin-top: 14px !important;
+	width: 20rem !important;
+	height: 2.5rem !important;
+	margin-bottom: 50px !important;
+}
+
+.form-avatar-profile {
+	width: 300px;
+	height: 300px;
+	margin: 20px 0;
+}
+
+.have-role, .not-role {
+	border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.role-header {
+	display: inline-block;
+    height: 40px;
+}
+.span-role {
+	display: inline-block;
+    width: 33.8rem;
+    margin-left: -15px;
+    background-color: #e9ecef;
+    text-align: center;
+    height: 80%;
+    padding-top: 6px;
+    border-radius: 6px 6px 0px 0px;
+}
+.role-have-right, .list-role{
+	margin-top: -0.7rem;
+    display: inline-block;
+    height: 18rem;
+    width: 28.3rem;
+}
+
+.checkbox-role {
+  width:19px;
+  height:19px;
+  margin:-3px 5px 0px 10px;
+  vertical-align:middle;
+  background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
+  cursor:pointer;
+}   
+
+
+
+#btn-addnews{
+	background-color: #9c27b0;
+}
+
+.have-role, .not-role {
+	border: 1px solid gray;
+    border-radius: 5px;
+}
+
+.role-header {
+	display: inline-block;
+    height: 40px;
+}
+.span-role {
+	display: inline-block;
+    width: 33.8rem;
+    margin-left: -15px;
+    background-color: #e9ecef;
+    text-align: center;
+    height: 80%;
+    padding-top: 6px;
+    border-radius: 6px 6px 0px 0px;
+}
+.role-have-right, .list-role{
+	margin-top: -0.7rem;
+    display: inline-block;
+    overflow-y: scroll;
+    height: 18rem;
+    width: 28.3rem;
+}
+
+.checkbox-role {
+  width:19px;
+  height:19px;
+  margin:-3px 5px 0px 10px;
+  vertical-align:middle;
+  background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/210284/check_radio_sheet.png) left top no-repeat;
+  cursor:pointer;
+}     
+
+/* .role-text {
+  margin-left: 3rem;
+  margin-top: -2rem;
+} */
+
+.width-news-id {
+	width: 12rem;
+}
+
+label.error {
+	color: red;
+}
+
+.form-file{
+	opacity: 1 !important;
+    margin-top: 14px !important;
+    width: 20rem !important;
+    height: 2.5rem !important;
+}
+
+.form-avatar-profile {
+  width: 200px;
+  height: 14rem;
+  margin-top: -1.2rem;
+  margin-bottom: 0.5rem;
+}
