@@ -16,4 +16,6 @@ public interface UserService {
 	public UserDTO updateUser(UpdateUserRequest request);
 
 	public UserDTO deleteUser(String userName);
+
+	public UserDTO addUserClient(AddUserRequest request);
 }

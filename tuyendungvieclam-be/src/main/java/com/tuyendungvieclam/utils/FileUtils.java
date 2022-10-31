@@ -4,13 +4,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDateTime;
-//import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 public class FileUtils {
 	
 	public static String uploadFile(String base64, String fileName, String folder) {
 		try {
-			String root = "D:\\TuyenDungViecLam\\TUYENDUNGVIECLAM\\quanlydulich-fe\\src\\main\\webapp\\fileupload";
+			String root = "D:\\TuyenDungViecLam\\TUYENDUNGVIECLAM\\tuyendungvieclam-fe\\src\\main\\webapp\\fileupload";
 			File locationRoot = new File(root);
 	        if (!locationRoot.exists()){//if not exist folder, system will create folder by directory
 	        	locationRoot.mkdir();
@@ -35,8 +35,8 @@ public class FileUtils {
 	        	directory.delete();
 	        }
 	        FileOutputStream outputStream = new FileOutputStream(location);
-//	        byte[] base64Byte = Base64.decodeBase64(base64.getBytes());
-//	        outputStream.write(base64Byte);
+			byte[] base64Byte = Base64.decodeBase64(base64.getBytes());
+			outputStream.write(base64Byte);
 	        outputStream.close();
 	        return "fileupload" + File.separator + folder + File.separator + date + File.separator + fileName;
 	    } catch (IOException e) {

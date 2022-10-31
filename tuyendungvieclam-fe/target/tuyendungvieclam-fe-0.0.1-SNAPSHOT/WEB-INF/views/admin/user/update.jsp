@@ -31,6 +31,7 @@
 		<label for="usr" class="form-label">Phone</label>
 		<input type="number" class="form-control form-input" name="phone" id="phone" placeholder="012332323232" value='<c:out value="${userDTO.phoneNumber}"></c:out>'>
 	</div>
+	
 	<div class="form-group">
 		<label for="usr" class="form-label">Image</label>
 		<input type="file" style="padding-top: 3px;" class="form-control form-input" id = "form-avatar" name = "form_avatar">
@@ -40,6 +41,7 @@
         <img src="" alt="avatar" class = "form-avatar-profile" id = "avater-review" >
         <input type="hidden" id = "fileNameAvatar" value='<c:out value="${userDTO.avatar}"></c:out>'>
     </div>
+    
 	<div class="form-group nhatnhat">
 		<label>role</label>
 		<div class="role-have-right nhat" id="listHaveRole"></div>
@@ -80,7 +82,7 @@
 				}
 	    	});
 
-	    	$("#avater-review").prop("src", "D:\\Tuankul\\QuanLyDuLich\\quanlydulich-fe\\src\\main\\webapp\\"+$("#fileNameAvatar").val());
+	    	$("#avater-review").prop("src", "http://127.0.0.1:8887/tuyendungvieclam-fe/src/main/webapp/"+$("#fileNameAvatar").val());
 	    });
     	$("#btn-update-user").click(function() {
 			var userName = $('#userName').val();
@@ -95,6 +97,8 @@
 	        dataArray["email"] = email;
 	        dataArray["phone_number"] = phoneNumber;
 	        dataArray["password"] = password;
+	        dataArray["file_name"] = files.name;
+			dataArray["base64"] = e.target.result;
     		$.ajax({
 				url : '${updateUser}',
 				method : "PUT",
@@ -120,6 +124,21 @@
 			    }
 			});
     	});
+    	$('#form-avatar').change(function(){
+	        openImage(this, $("#avater-review"));
+	    });
+
+	    function openImage(input, imageView) {
+	        if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+	            reader.onload = function (e) {
+	                $(imageView).attr('src', reader.result);
+	            }
+	            reader.readAsDataURL(input.files[0]);
+	        } else {
+	            $(imageView).attr('src', "");
+	        }
+	    }
 	</script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.tuyendungvieclam.service.impl;
 
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -56,21 +57,18 @@ public class UserServiceImpl implements UserService {
 		FindAllUserPagination result = new FindAllUserPagination();
 		Pageable pageable = new PageRequest(pageNumber - 1, pageSize);
 		
-		//query phân trang
 		Page<UserEntity> pageUsers = userRepository.findByActiveTrue(pageable);
 		List<UserDTO> userDTOs = new ArrayList<>();
 		for(UserEntity entity: pageUsers.getContent()) {
 			userDTOs.add(userConverter.convertEntityToDto(entity));
 		}
 		
-		//add danh sách phân trang gồm pageSize được truy�?n vào là bao nhiêu
 		List<UserInfoResponse> userInfoList = new ArrayList<>();
 		for(UserDTO userDTO: userDTOs) {
 			userInfoList.add(UserInfoResponse.copy(userDTO));
 		} 
 		result.setUserInfoList(userInfoList);
 		
-		//add total_item, total_page, page_number, page_size
 		CommonPagination pagination = new CommonPagination(pageNumber, pageSize, pageUsers.getTotalPages(), pageUsers.getTotalElements());
 		result.setPagination(pagination);
 		return result;
@@ -83,7 +81,9 @@ public class UserServiceImpl implements UserService {
 		if (userDTO != null) {
 			return null;
 		}
-		String avatar = FileUtils.uploadFile(request.getBase64(), request.getFileName(), "users");
+		int index = request.getBase64().indexOf(",");
+    	String fileImage = request.getBase64().substring(index + 1);
+		String avatar = FileUtils.uploadFile(fileImage, request.getFileName(), "users");
 		userDTO = new UserDTO();
 		userDTO.setUserName(request.getUserName());
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -94,9 +94,8 @@ public class UserServiceImpl implements UserService {
 		userDTO.setActive(true);
 		userDTO.setCreatedDate(LocalDateTime.now());
 		userDTO.setCreatedBy(SecurityUtils.getUserNameFromSecurity());
-		userDTO.setAvatar(avatar);
 		userRepository.save(userConverter.convertDtoToEntity(userDTO));
-		
+		userDTO.setAvatar(avatar);
 		Set<RoleDTO> roleDTOs = roleService.findByRoleIdIn(request.getListRole());
 		for(RoleDTO roleDTO: roleDTOs) {
 			roleDTO.getUserSet().add(userDTO);
@@ -112,12 +111,14 @@ public class UserServiceImpl implements UserService {
 		if (userDTO == null) {
 			return null;
 		}
+		
 		userDTO.setFullName(request.getFullName());
 		userDTO.setEmail(request.getEmail());
 		userDTO.setPhoneNumber(request.getPhoneNumber());
 		userDTO.setPassword(request.getPassword());
 		userDTO.setUpdatedDate(LocalDateTime.now());
 		userDTO.setUpdatedBy(SecurityUtils.getUserNameFromSecurity());
+	
 		userRepository.save(userConverter.convertDtoToEntity(userDTO));
 		return userDTO;
 	}
@@ -131,6 +132,33 @@ public class UserServiceImpl implements UserService {
 		}
 		userDTO.setActive(false);
 		userRepository.save(userConverter.convertDtoToEntity(userDTO));
+		return userDTO;
+	}
+	
+	@Override
+	public UserDTO addUserClient(AddUserRequest request) {
+		UserEntity userEntity = userRepository.findByUserName(request.getUserName());
+		UserDTO userDTO = userConverter.convertEntityToDto(userEntity);
+		if (userDTO != null) {
+			return null;
+		}
+		userDTO = new UserDTO();
+		userDTO.setUserName(request.getUserName());
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		userDTO.setPassword(passwordEncoder.encode(request.getPassword()));
+		userDTO.setFullName(request.getFullName());
+		userDTO.setEmail(request.getEmail());
+		userDTO.setPhoneNumber(request.getPhoneNumber());
+		userDTO.setActive(true);
+		userDTO.setCreatedDate(LocalDateTime.now());
+		userDTO.setCreatedBy("system");
+		userRepository.save(userConverter.convertDtoToEntity(userDTO));
+		
+		Set<RoleDTO> roleDTOs = roleService.findByRoleIdIn(request.getListRole());
+		for(RoleDTO roleDTO: roleDTOs) {
+			roleDTO.getUserSet().add(userDTO);
+			roleService.saveRole(roleDTO);
+		}
 		return userDTO;
 	}
 }

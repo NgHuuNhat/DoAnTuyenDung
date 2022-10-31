@@ -1,6 +1,7 @@
 package com.tuyendungvieclam.entity;
 
 import java.util.List;
+
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "users")
@@ -38,6 +42,10 @@ public class UserEntity extends BaseEntity {
 	
 	@Column(name = "avatar")
 	private String avatar;
+	
+	@Transient
+	private MultipartFile file;
+	
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "userSet")
 	private Set<RoleEntity> roleSet;
@@ -47,6 +55,15 @@ public class UserEntity extends BaseEntity {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
 	private List<CommentEntity> comments;
+	
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public String getUserName() {
 		return userName;

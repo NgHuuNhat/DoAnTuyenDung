@@ -106,7 +106,7 @@
 		<h6>Comment</h6>
 	</div>
 	<div class ="comment-content" style="padding-left: 20px;">
-		<textarea rows="3" cols="106" class="display-block comment-text" id="noiDungBinhLuan" style="display: block; border-radius: 10px;background-color: #f0f2f5; border: none; padding: 10px;"></textarea>
+		<textarea rows="3" cols="99" class="display-block comment-text" id="noiDungBinhLuan" style="display: block; border-radius: 10px;background-color: #f0f2f5; border: none; padding: 10px;"></textarea>
 		<button class="btn btn-success" id="commentTour" style="display: block;">Bình luận</button>
 	</div>
 	<br>

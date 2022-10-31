@@ -1,3 +1,8 @@
+.form-input:focus{
+	background-color: #0000ff0a;
+	border: 1px solid black;
+}
+
 .h6{
 	width: 500px;
 }
@@ -330,7 +335,8 @@ iframe {
 }
 
 .wrap-login100 {
-  width: 390px;
+  padding: 40px;
+  width: 400px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;

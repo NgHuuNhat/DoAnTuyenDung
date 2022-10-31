@@ -16,6 +16,10 @@ import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 
 @Configuration
 @EnableJpaRepositories(basePackages = { "com.tuyendungvieclam.repository" })
@@ -70,5 +74,23 @@ public class ORMConfig {
 	@Bean
 	public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
 		return new PersistenceExceptionTranslationPostProcessor();
+	}
+
+	@Bean
+	public CommonsMultipartResolver multipartResolver() {
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setDefaultEncoding("UTF-8");
+		return resolver;
+	}
+
+	@Bean
+	public Cloudinary cloudinary() {
+		Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+				"cloud_name", "dr9ho7gae", 
+				"api_key", "535784121316398", 
+				"api_secret", "u3yq1iVLcbr9LwEgxWQWc0kT-ms", 
+				"secure", true
+				));
+		return cloudinary;
 	}
 }

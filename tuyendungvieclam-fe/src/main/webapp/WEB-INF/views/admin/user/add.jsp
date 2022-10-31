@@ -123,14 +123,12 @@
 					var email = $('#email').val();
 					var phoneNumber = $('#phone').val();
 					var password = $('#password').val();
-
 					var addRoles = new Array();
 					$('.not-role').each(function() {
 						if($(this).prop('checked') == true) {
 							addRoles.push($(this).val());
 						}
 					});
-
 					var files = $('#form-avatar')[0].files[0];
 					var reader = new FileReader();
 					

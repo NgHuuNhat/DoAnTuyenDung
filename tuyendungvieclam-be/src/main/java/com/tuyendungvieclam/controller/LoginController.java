@@ -1,16 +1,21 @@
 package com.tuyendungvieclam.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
+
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
+import com.tuyendungvieclam.entity.UserEntity;
 
 @Controller
 public class LoginController {
+
 	
 	@GetMapping(value = "/login")
 	public ModelAndView loginPage() {
@@ -32,9 +37,11 @@ public class LoginController {
 		return "redirect:/login?accessDenied";
 	}
 	
+	//register
 	@GetMapping("/login/register")
 	public ModelAndView dangkyPage() {
 		ModelAndView mav = new ModelAndView("login/register");
+		mav.addObject("user", new UserEntity());
 		return mav;
 	}
 	

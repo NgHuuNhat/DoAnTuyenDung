@@ -27,6 +27,8 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="<c:url value='/template/login/assets/css/util.css'/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value='/template/login/assets/css/main.css'/>">
+	<script type='text/javascript' src='<c:url value="/template/admin/assets/js/jquery.min.js"/>'></script><!-- 3.5.1 -->
+	 <script src="<c:url value='/template/admin/assets/js/plugins/jquery.validate.min.js'/>"></script>
 <!--===============================================================================================-->
 </head>
 <body>

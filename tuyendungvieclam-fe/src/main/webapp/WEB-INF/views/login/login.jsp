@@ -36,30 +36,12 @@
 					</button>
 				</div>
 
-				<div class="text-center p-t-57 p-b-20">
-					<span class="txt1">
-						Or login with
-					</span>
-				</div>
-
-				<div class="flex-c p-b-112">
-					<a href="#" class="login100-social-item">
-						<i class="fa fa-facebook-f"></i>
-					</a>
-
-					<a href="#" class="login100-social-item">
-						<img src="<c:url value='/template/login/assets/images/icons/icon-google.png'/>" alt="GOOGLE">
-					</a>
-				</div>
-
-				<div class="text-center">
+				<div class="text-center" style="margin-top: 30px;">
 					<a href="<c:url value='login/register'/>" class="txt2 hov1">
 						register
 					</a>
 				</div>
 			</form>
-
-			
 		</div>
 	</div>
 	

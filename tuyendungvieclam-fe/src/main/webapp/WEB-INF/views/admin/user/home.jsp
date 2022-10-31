@@ -37,23 +37,12 @@
 	</div>
 	<script type="text/javascript">
 		$(document).ready(function () {
-			//# là ký hiệu của Id của 1 element
-			//. là ký hiệu của class của 1 element
+			
 		    var tableUser = $('#table-user').DataTable({
 		    	"paging": false,
 		    	"info": false
 			});
 
-			//Step 1: Biết được số lượng phần tử trên 1 trang (hiện tại mình cho nó là 10 phần tử hoặc 10 record trên 1 trang)
-			//Step 2: Lúc nào chạy lên trang admin/user sẽ đều lấy ở vị trí trang đầu tiên tức là trang 1
-			//Step 3: Làm sao biết được có tổng bao nhiêu trang ở trong trang admin/user
-			
-			//Cần phân biệt 4 loại sau:
-			//page_number: vị trí của trang cần show
-			//page_size: tổng số lượng phần tử trên 1 trang
-			//total_page: tổng số lượng trang
-			//total_item: tổng số lượng phần tử
-			//Ví dụ: giả sử total_item là 110 mà page_size là 10 thì mình sẽ có total_page là 11
 			$.ajax({
 				url : '${findAllUser}?page_number=1&page_size=10',
 				method : "GET",
